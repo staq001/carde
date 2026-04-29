@@ -24,7 +24,7 @@ export class CardController {
 
   async verifyCard(req: Request, res: Response, next: NextFunction) {
     try {
-      const card = await this.cardService.verifyCard(req.body);
+      const card = await this.cardService.verifyCard(req.body.id);
 
       res.status(200).json({
         status: 200,

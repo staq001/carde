@@ -13,8 +13,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      redis:
-        condition: service_started
     volumes:
       - type: bind
         source: ./
@@ -49,7 +47,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "mysql -u root -p$${MYSQL_ROOT_PASSWORD} -e 'USE ${MYSQL_DATABASE};' || exit 1",
+          "mysql -uroot -p$${MYSQL_ROOT_PASSWORD} -e 'SELECT 1' ${MYSQL_DATABASE}",
         ]
       interval: 5s
       timeout: 2s
