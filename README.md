@@ -76,6 +76,82 @@ Every API endpoint begins with:
 /api/v1
 ```
 
+## Card API
+
+### Create a new card
+
+- Method: `POST`
+- URL: `/api/v1/`
+- Body:
+  ```json
+  {
+    "name": "My Card",
+    "description": "Optional description"
+  }
+  ```
+- Success response:
+  - Status: `201`
+  - Body:
+    ```json
+    {
+      "status": 201,
+      "message": "Card created successfully",
+      "data": {
+        "values": {
+          "name": "My Card",
+          "description": "Optional description"
+        }
+      }
+    }
+    ```
+- Possible errors:
+  - `400` Validation Failed
+  - `409` Card with this name already exists
+  - `500` Internal Server Error
+
+### Verify a card
+
+- Method: `POST`
+- URL: `/api/v1/verify`
+- Body:
+  ```json
+  {
+    "id": "3f6e1a5d-3b9e-4d77-9b72-71c5d3e7c6f0"
+  }
+  ```
+- Success response:
+  - Status: `200`
+  - Body:
+    ```json
+    {
+      "status": 200,
+      "message": "Card verified successfully",
+      "data": {
+        "id": "3f6e1a5d-3b9e-4d77-9b72-71c5d3e7c6f0",
+        "name": "My Card",
+        "description": "Optional description"
+      }
+    }
+    ```
+- Possible errors:
+  - `400` Validation Failed or Invalid card ID format
+  - `404` card not found
+  - `500` Internal Server Error
+
+## Health Check
+
+- Method: `GET`
+- URL: `/health`
+- Success response:
+  - Status: `200`
+  - Body:
+    ```json
+    {
+      "status": "OK",
+      "message": "Health check passed"
+    }
+    ```
+
 ## Running with Docker Compose
 
 Use Docker Compose to start both the API and MySQL database together:

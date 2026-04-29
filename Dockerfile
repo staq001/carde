@@ -34,6 +34,6 @@ RUN apt-get update && apt-get install -y curl
 
 # run the app
 USER bun
-EXPOSE 4400
+EXPOSE 3200
 
-ENTRYPOINT [ "bun", "run", "dev" ]
+ENTRYPOINT [ "bun", "run", "start" ]
