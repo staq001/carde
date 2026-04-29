@@ -32,7 +32,8 @@ export class CardService {
       return values;
     } catch (e: any) {
       logger.error(`Error creating card...${e}`);
-      throw new InternalServerError(`Error creating user`);
+      if (e instanceof Conflict) throw e;
+      throw new InternalServerError(`Error creating card`);
     }
   }
 
